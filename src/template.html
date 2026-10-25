@@ -1,0 +1,330 @@
+<title>5.1.2 音箱布置图</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: drafting sheets — each figure is a sheet with a title strip, drawing left, spec column right */
+:root {
+  --bg: #eceff3;
+  --sheet: #fbfcfd;
+  --ink: #17202a;
+  --muted: #5a6572;
+  --line: #c8d0d9;
+  --grid: #e4e9ef;
+  --desk: #eef1f5;
+  --g-f: #2361c4;   /* 前置 L/R */
+  --g-c: #c0650f;   /* 中置 C */
+  --g-s: #14836a;   /* 环绕 Ls/Rs */
+  --g-t: #7848c2;   /* 天空 Ltm/Rtm */
+  --g-l: #687280;   /* LFE */
+  --g-floor: #5a6572;
+  --sans: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1217; --sheet: #151b22; --ink: #e3e8ee; --muted: #94a0ad; --line: #2e3843;
+    --grid: #1f2831; --desk: #1c242d;
+    --g-f: #6ea1ff; --g-c: #f0a458; --g-s: #4cc69e; --g-t: #b38cf2; --g-l: #a1aab5; --g-floor: #94a0ad;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1217; --sheet: #151b22; --ink: #e3e8ee; --muted: #94a0ad; --line: #2e3843;
+  --grid: #1f2831; --desk: #1c242d;
+  --g-f: #6ea1ff; --g-c: #f0a458; --g-s: #4cc69e; --g-t: #b38cf2; --g-l: #a1aab5; --g-floor: #94a0ad;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--sans);
+  font-size: 15px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+header { display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+h1 { margin: 0; font-size: clamp(30px, 5vw, 46px); font-weight: 900; letter-spacing: -.01em; line-height: 1.15; text-wrap: balance; }
+.lede { margin: 0; max-width: 62ch; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 6px; font-size: 13.5px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 14px; height: 14px; border-radius: 3px; border: 2px solid currentColor; background: color-mix(in srgb, currentColor 18%, transparent); }
+.c-f { color: var(--g-f); } .c-c { color: var(--g-c); } .c-s { color: var(--g-s); } .c-t { color: var(--g-t); } .c-l { color: var(--g-l); }
+.legend b { color: var(--ink); font-weight: 500; }
+.legend .mono { font-family: var(--mono); font-weight: 600; }
+
+.sheet { background: var(--sheet); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.strip { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: stretch; border-bottom: 1px solid var(--line); }
+.strip > div { padding: 12px 18px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.figno { font-family: var(--mono); font-weight: 700; font-size: 20px; border-right: 1px solid var(--line); letter-spacing: .02em; }
+.strip h2 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.35; text-wrap: balance; }
+.strip p { margin: 0; font-size: 13px; color: var(--muted); }
+.scale { font-family: var(--mono); font-size: 12px; color: var(--muted); border-left: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.figrow { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+.draw { padding: 14px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.scroll svg { display: block; width: 100%; height: auto; min-width: 600px; }
+.scroll svg.section { min-width: 420px; max-width: 520px; margin: 4px auto 0; }
+.cap { font-size: 12.5px; color: var(--muted); margin: 0 4px; }
+.specs { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.specs h3 { margin: 0; font-size: 12px; font-family: var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 7px 14px; font-size: 14px; }
+dt { color: var(--muted); }
+dd { margin: 0; min-width: 0; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 500; }
+.note { font-size: 13px; color: var(--muted); margin: 0; border-top: 1px solid var(--line); padding-top: 12px; }
+.ab { font-family: var(--mono); font-weight: 700; }
+
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 760px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .06em; background: var(--desk); white-space: nowrap; }
+td.k { font-family: var(--mono); font-weight: 700; white-space: nowrap; }
+td.k i { font-style: normal; display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: currentColor; margin-right: 8px; vertical-align: 1px; }
+td .num { white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+.tbl-head { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
+.tbl-head h2 { margin: 0; font-size: 18px; }
+.tbl-head p { margin: 0; color: var(--muted); font-size: 13px; }
+
+.fig2grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.fig2side { display: flex; flex-direction: column; border-left: 1px solid var(--line); min-width: 0; }
+.fig2side .draw { border-right: 0; border-bottom: 1px solid var(--line); }
+.points { margin: 0; padding: 16px 20px 20px 38px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.points li::marker { color: var(--muted); }
+
+.sources { font-size: 13px; color: var(--muted); }
+.sources h2 { font-size: 14px; color: var(--ink); margin: 0 0 6px; }
+.sources ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; }
+.sources a { color: var(--g-f); text-underline-offset: 2px; }
+.sources a:focus-visible { outline: 2px solid var(--g-f); outline-offset: 2px; }
+
+/* ---------------- SVG drawing styles ---------------- */
+svg text { font-family: var(--sans); }
+.halo, .lab, .sub, .angtext, .dimtext, .spklab, .zsub, .zlab, .clartext {
+  paint-order: stroke; stroke: var(--sheet); stroke-width: 4px; stroke-linejoin: round;
+}
+.lab { font-size: 13px; font-weight: 700; fill: var(--ink); }
+.sub { font-size: 11.5px; fill: var(--muted); }
+.abbr { font-family: var(--mono); font-weight: 700; font-size: 13.5px; }
+.abbr.g-f { fill: var(--g-f); } .abbr.g-c { fill: var(--g-c); } .abbr.g-s { fill: var(--g-s); }
+.abbr.g-t { fill: var(--g-t); } .abbr.g-l { fill: var(--g-l); }
+.box { stroke-width: 1.6; fill-opacity: .2; }
+.box.g-f { fill: var(--g-f); stroke: var(--g-f); } .box.g-c { fill: var(--g-c); stroke: var(--g-c); }
+.box.g-s { fill: var(--g-s); stroke: var(--g-s); } .box.g-t { fill: var(--g-t); stroke: var(--g-t); }
+.box.g-l { fill: var(--g-l); stroke: var(--g-l); } .box.g-floor { fill: var(--g-floor); stroke: var(--g-floor); }
+.box.top { stroke-dasharray: 4 3; }
+.box.faint { opacity: .55; }
+.face { stroke-width: 4; stroke-linecap: round; }
+.face.g-f { stroke: var(--g-f); } .face.g-c { stroke: var(--g-c); } .face.g-s { stroke: var(--g-s); } .face.g-t { stroke: var(--g-t); }
+.aim { stroke-width: 1.3; stroke-dasharray: 2 4; }
+.aim.g-f { stroke: var(--g-f); } .aim.g-c { stroke: var(--g-c); } .aim.g-s { stroke: var(--g-s); } .aim.g-t { stroke: var(--g-t); }
+.azi { stroke: var(--line); stroke-width: 1; }
+.ring { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 6 5; opacity: .75; }
+.radius { stroke: var(--muted); stroke-width: 1; }
+.anglearc { fill: none; stroke: var(--ink); stroke-width: 1.2; }
+.angtext { font-family: var(--mono); font-size: 12px; font-weight: 600; fill: var(--ink); }
+.grid { stroke: var(--grid); stroke-width: 1; }
+.wall { fill: none; stroke: var(--ink); stroke-width: 5; }
+.wallline { stroke: var(--ink); stroke-width: 5; }
+.walltag { font-size: 11px; fill: var(--muted); letter-spacing: .1em; }
+.dim, .ext { stroke: var(--muted); stroke-width: 1; }
+.tick { stroke: var(--muted); stroke-width: 1.5; }
+.dimtext { font-family: var(--mono); font-size: 11.5px; fill: var(--muted); font-weight: 500; }
+.roomtag { font-size: 13px; font-weight: 700; fill: var(--ink); }
+.roomtag2 { font-size: 12px; fill: var(--muted); }
+.sb1 { fill: var(--ink); } .sb2 { fill: var(--sheet); stroke: var(--ink); stroke-width: 1; }
+.sbtext { font-family: var(--mono); font-size: 10.5px; fill: var(--muted); }
+.head { fill: var(--sheet); stroke: var(--ink); stroke-width: 1.6; }
+.nose { fill: var(--ink); }
+.footprint { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-dasharray: 8 5; }
+.desk { fill: var(--desk); stroke: var(--muted); stroke-width: 1.2; }
+.monitor { fill: var(--ink); }
+.chair { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.earline { stroke: var(--muted); stroke-dasharray: 3 4; stroke-width: 1; }
+.floor { stroke: var(--ink); stroke-width: 3; }
+.ceil { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 10 6; }
+.deskleg, .stand-l { stroke: var(--muted); stroke-width: 2; }
+.stand { fill: var(--muted); }
+.zone { stroke: none; }
+.zone.g-c { fill: var(--g-c); fill-opacity: .22; } .zone.g-f { fill: var(--g-f); fill-opacity: .18; }
+.zone.g-s { fill: var(--g-s); fill-opacity: .18; } .zone.g-t { fill: var(--g-t); fill-opacity: .22; }
+.zone.g-t2 { fill: var(--g-t); fill-opacity: .13; } .zone.g-floor { fill: var(--g-floor); fill-opacity: .12; }
+.bound { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 4 4; opacity: .5; }
+.zlab { font-size: 15px; font-weight: 700; fill: var(--ink); }
+.zlab .abbr { font-size: 17px; }
+.zsub { font-size: 11.5px; fill: var(--muted); }
+.clar { stroke: none; }
+.c1 { fill: var(--ink); fill-opacity: .8; } .c2 { fill: var(--ink); fill-opacity: .35; } .c3 { fill: var(--ink); fill-opacity: .12; }
+.clartext { font-size: 12px; font-weight: 700; fill: var(--ink); }
+.spklab { font-family: var(--mono); font-size: 12px; font-weight: 600; fill: var(--ink); }
+.compass { font-size: 13px; font-weight: 700; fill: var(--muted); letter-spacing: .2em; }
+
+@media (max-width: 920px) {
+  .figrow, .fig2grid { grid-template-columns: minmax(0, 1fr); }
+  .draw { border-right: 0; border-bottom: 1px solid var(--line); }
+  .fig2side { border-left: 0; }
+  .strip { grid-template-columns: auto minmax(0, 1fr); }
+  .scale { display: none; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Dolby Atmos · 5.1.2 · 俯视平面</div>
+    <h1>5.1.2 音箱布置图</h1>
+    <p class="lede">图 1 是两种场景的标准摆位，图 2 是每组音箱负责让你听出哪个方向的声音。角度以正前方为 0°，向左为负、向右为正；所有俯视图上方都是前墙。</p>
+    <div class="legend" aria-label="音箱分组">
+      <span class="c-f"><i class="sw"></i><b>前置组 <span class="mono">L / R</span></b></span>
+      <span class="c-c"><i class="sw"></i><b>中置 <span class="mono">C</span></b></span>
+      <span class="c-s"><i class="sw"></i><b>环绕组 <span class="mono">Ls / Rs</span></b></span>
+      <span class="c-t"><i class="sw"></i><b>天空组 <span class="mono">Ltm / Rtm</span>（虚线框 = 装在头顶）</b></span>
+      <span class="c-l"><i class="sw"></i><b>低频 <span class="mono">LFE</span></b></span>
+    </div>
+  </header>
+
+  <!-- ===================== FIG 1A ===================== -->
+  <section class="sheet" aria-labelledby="t1a">
+    <div class="strip">
+      <div class="figno">1A</div>
+      <div><h2 id="t1a">标准录音棚 · 等距布局</h2><p>按 Dolby 全景声棚指南和 ITU-R BS.775 的角度画；8 只音箱到听音位距离相同</p></div>
+      <div class="scale">网格 0.5 m<br>示意比例 ≈ 1:55</div>
+    </div>
+    <div class="figrow">
+      <div class="draw">
+        <div class="scroll">{{FIG1A}}</div>
+        <p class="cap">实线框 = 地面层音箱（声学中心在耳高 1.2 m）；粗边 = 发声面；点线 = 指向听音位的朝向。</p>
+        <div class="scroll">{{FIG1A_SEC}}</div>
+      </div>
+      <div class="specs">
+        <h3>房间</h3>
+        <dl>
+          <dt>参考面积</dt><dd><span class="num">20–40 m²</span>，低于 20 m² 很难做到 2 m 等距</dd>
+          <dt>本图房间</dt><dd><span class="num">6.0 × 5.0 m</span>，层高 <span class="num">2.8 m</span>，<span class="num">30 m²</span> / <span class="num">84 m³</span></dd>
+          <dt>Dolby 下限</dt><dd>音箱围出的范围至少 <span class="num">3 m</span> 宽、<span class="num">3.5 m</span> 长；顶箱离地 ≥ <span class="num">2.4 m</span>；体积建议 &gt; <span class="num">50 m³</span></dd>
+          <dt>听音位</dt><dd>离前墙 <span class="num">2.73 m</span>（房长约 45%，Dolby 要求 40–60%）</dd>
+        </dl>
+        <h3>音箱角度与朝向</h3>
+        <dl>
+          <dt>听音距离</dt><dd><span class="num">r = 2.0 m</span>（Dolby：≤ 5 m，建议 &lt; 4 m）</dd>
+          <dt class="c-c"><span class="ab">C</span></dt><dd><span class="num">0°</span>，正对听音位</dd>
+          <dt class="c-f"><span class="ab">L / R</span></dt><dd><span class="num">±30°</span>，向内转 30° 对准头部</dd>
+          <dt class="c-s"><span class="ab">Ls / Rs</span></dt><dd><span class="num">±110°</span>（容许 100–120°），转向听音位</dd>
+          <dt class="c-t"><span class="ab">Ltm / Rtm</span></dt><dd>与 L/R 同宽、在头部前方 <span class="num">0.23 m</span>；高 <span class="num">2.5 m</span>，侧向仰角 <span class="num">52°</span>（Dolby 45–55°），从侧面看 <span class="num">80°</span>（65–100°）；向下斜对准头部</dd>
+          <dt class="c-l"><span class="ab">LFE</span></dt><dd>前方地面、偏离中线；分频约 <span class="num">80 Hz</span></dd>
+        </dl>
+        <p class="note">两只顶箱离听音位 1.66 m，比其他音箱近 0.34 m，在渲染器或功放里补约 1 ms 延时、并调平音量即可。Dolby 认证棚首选 7.1.4，5.1.2 适合入门监听和检查。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FIG 1B ===================== -->
+  <section class="sheet" aria-labelledby="t1b">
+    <div class="strip">
+      <div class="figno">1B</div>
+      <div><h2 id="t1b">桌面近场 · 1 米等距</h2><p>同一套角度缩小到电脑桌：听音距离 1 m，L / R 和头部组成等边三角形</p></div>
+      <div class="scale">网格 0.5 m<br>示意比例 ≈ 1:25</div>
+    </div>
+    <div class="figrow">
+      <div class="draw">
+        <div class="scroll">{{FIG1B}}</div>
+        <p class="cap">虚线大框 = 建议预留的占地（含环绕支架和座椅活动）；圆角框 = 座椅。</p>
+        <div class="scroll">{{FIG1B_SEC}}</div>
+      </div>
+      <div class="specs">
+        <h3>占地</h3>
+        <dl>
+          <dt>桌面</dt><dd><span class="num">1.6 × 0.8 m</span>，桌高 <span class="num">0.75 m</span></dd>
+          <dt>整套占地</dt><dd><span class="num">2.4 × 2.0 m ≈ 4.8 m²</span></dd>
+          <dt>房间建议</dt><dd>至少 <span class="num">3 × 3 m</span>，层高 ≥ <span class="num">2.4 m</span></dd>
+          <dt>头部位置</dt><dd>耳朵离桌沿约 <span class="num">0.4 m</span></dd>
+        </dl>
+        <h3>音箱角度与朝向</h3>
+        <dl>
+          <dt>听音距离</dt><dd><span class="num">r = 1.0 m</span>（0.8–1.2 m 都可，8 只尽量等距）</dd>
+          <dt class="c-c"><span class="ab">C</span></dt><dd><span class="num">0°</span>，放显示器正下方，略向上仰对准耳朵</dd>
+          <dt class="c-f"><span class="ab">L / R</span></dt><dd><span class="num">±30°</span>，两只相距 <span class="num">1.0 m</span>；用脚垫把高音抬到耳高</dd>
+          <dt class="c-s"><span class="ab">Ls / Rs</span></dt><dd><span class="num">±110°</span>，落地支架高 <span class="num">1.2 m</span>，在头部后方 <span class="num">0.34 m</span>、两侧 <span class="num">0.94 m</span></dd>
+          <dt class="c-t"><span class="ab">Ltm / Rtm</span></dt><dd>与 L/R 同宽、头部前方 <span class="num">0.12 m</span>，高 <span class="num">1.9 m</span>，侧向仰角 <span class="num">54°</span>；用墙装吊臂、天花吊装或高支架</dd>
+          <dt class="c-l"><span class="ab">LFE</span></dt><dd>桌旁地面、偏一侧；小音箱可把分频设到 <span class="num">100–120 Hz</span></dd>
+        </dl>
+        <p class="note">桌面距离很近，不建议用"反射式全景声音箱"：它靠天花板反射，近场下音箱直接漏出来的声音比反射声更响，耳朵会把声音定位在音箱本身，头顶感出不来。顶箱直接吊高对准头部最可靠。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NAMES ===================== -->
+  <section class="sheet" aria-labelledby="tnames">
+    <div class="tbl-head"><h2 id="tnames">8 只音箱的标准名称</h2><p>序号是 Dolby 渲染器 5.1.2 输出的声道顺序，接线时按这个顺序对应声卡或功放的输出口</p></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>声道</th><th>缩写</th><th>英文标准名</th><th>中文名</th><th>录音棚（图 1A）</th><th>桌面（图 1B）</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="k c-f"><i></i>L</td><td>Left</td><td>左前置（左主音箱）</td><td><span class="num">−30°</span>，2.0 m，耳高</td><td><span class="num">−30°</span>，1.0 m，桌面</td></tr>
+          <tr><td class="num">2</td><td class="k c-f"><i></i>R</td><td>Right</td><td>右前置（右主音箱）</td><td><span class="num">+30°</span>，2.0 m，耳高</td><td><span class="num">+30°</span>，1.0 m，桌面</td></tr>
+          <tr><td class="num">3</td><td class="k c-c"><i></i>C</td><td>Center</td><td>中置</td><td><span class="num">0°</span>，2.0 m</td><td><span class="num">0°</span>，显示器下方</td></tr>
+          <tr><td class="num">4</td><td class="k c-l"><i></i>LFE</td><td>Low-Frequency Effects</td><td>低频效果（低音炮 Subwoofer）</td><td>前方地面，偏离中线</td><td>桌旁地面</td></tr>
+          <tr><td class="num">5</td><td class="k c-s"><i></i>Ls</td><td>Left Surround</td><td>左环绕</td><td><span class="num">−110°</span>，2.0 m，耳高</td><td><span class="num">−110°</span>，落地架 1.2 m</td></tr>
+          <tr><td class="num">6</td><td class="k c-s"><i></i>Rs</td><td>Right Surround</td><td>右环绕</td><td><span class="num">+110°</span>，2.0 m，耳高</td><td><span class="num">+110°</span>，落地架 1.2 m</td></tr>
+          <tr><td class="num">7</td><td class="k c-t"><i></i>Ltm</td><td>Left Top Middle</td><td>左顶中（左天空声道）</td><td>吊顶 2.5 m，仰角 52°</td><td>吊装 1.9 m，仰角 54°</td></tr>
+          <tr><td class="num">8</td><td class="k c-t"><i></i>Rtm</td><td>Right Top Middle</td><td>右顶中（右天空声道）</td><td>吊顶 2.5 m，仰角 52°</td><td>吊装 1.9 m，仰角 54°</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== FIG 2 ===================== -->
+  <section class="sheet" aria-labelledby="t2">
+    <div class="strip">
+      <div class="figno">2</div>
+      <div><h2 id="t2">每组音箱负责的方向范围</h2><p>色块 = 这个方向来的声音主要由哪组音箱发出；外圈灰带 = 人耳在这个方向能分辨得多清楚</p></div>
+      <div class="scale">不按比例</div>
+    </div>
+    <div class="fig2grid">
+      <div class="draw">
+        <div class="scroll">{{FIG2}}</div>
+        <p class="cap">图 2A 俯视：耳朵高度一圈的水平方向。分界线取相邻两只音箱的中点，实际是渐变过渡，不是一刀切。</p>
+      </div>
+      <div class="fig2side">
+        <div class="draw">
+          <div class="scroll">{{FIG2B}}</div>
+          <p class="cap">图 2B 正视：上下方向。仰角约 30° 以上的声音主要交给天空声道。</p>
+        </div>
+        <ol class="points">
+          <li><b>声音在两只音箱之间"拼"出来。</b>某个方向的声音由离它最近的两只音箱按比例发声，越靠近哪只，那只越响。</li>
+          <li><b>正前方最准。</b>C、L、R 三只挤在 60° 内，相邻只隔 30°；人耳本身对正前方也最敏感，约 1° 的偏移就能听出来。</li>
+          <li><b>侧面和身后偏虚。</b>L 到 Ls 隔 80°，Ls 到 Rs 隔 140°，拼出来的声像不稳；7.1 多加两只侧环绕就是为了补这里。</li>
+          <li><b>两只天空声道只分得清左上和右上。</b>前上方和后上方分不太清，要靠 5.1.4 的前后两对顶箱。</li>
+          <li><b>LFE 不负责方向。</b>它只放约 120 Hz 以下的低频，人耳很难判断这么低的声音从哪来，所以低音炮按房间低频是否平坦来摆。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="tablewrap" style="border-top:1px solid var(--line)">
+      <table>
+        <thead><tr><th>组</th><th>摆位</th><th>主要负责的来向</th><th>和谁一起拼</th><th>分辨力</th></tr></thead>
+        <tbody>
+          <tr><td class="k c-c"><i></i>C 中置</td><td><span class="num">0°</span></td><td>正前方 <span class="num">−15° ～ +15°</span>，人声、对白</td><td>与 L / R 拼出 <span class="num">±30°</span> 以内</td><td>最清晰</td></tr>
+          <tr><td class="k c-f"><i></i>L / R 前置</td><td><span class="num">±30°</span></td><td>左前、右前 <span class="num">±15° ～ ±70°</span>，音乐主体和画面左右</td><td>向内与 C 拼，向外与 Ls / Rs 拼</td><td>前方清晰，越往侧面越虚</td></tr>
+          <tr><td class="k c-s"><i></i>Ls / Rs 环绕</td><td><span class="num">±110°</span></td><td>侧面到身后 <span class="num">±70° ～ 180°</span>，环境声、从后方经过的声音</td><td>向前与 L / R 拼，两只一起拼正后方</td><td>侧面较虚，正后方最弱</td></tr>
+          <tr><td class="k c-t"><i></i>Ltm / Rtm 天空</td><td>头顶两侧，仰角 52–55°</td><td>仰角约 <span class="num">30°</span> 以上：左上、右上、正上方（雨声、直升机）</td><td>向下与地面层拼，两只一起拼正上方</td><td>分得清左右，分不清前后</td></tr>
+          <tr><td class="k c-l"><i></i>LFE 低频</td><td>地面，位置灵活</td><td>不分方向，只负责约 <span class="num">120 Hz</span> 以下的低频（爆炸、低音鼓）</td><td>也接收其他音箱分下来的低频</td><td>人耳几乎分不出方向</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sources" aria-labelledby="tsrc">
+    <h2 id="tsrc">数据来源</h2>
+    <ul>
+      <li><a href="https://www.lafontaudio.com/documents/Atmos_authoring_studio.pdf" target="_blank" rel="noopener">Dolby Atmos Home Entertainment Studio Certification Guide</a>：布局最小 3 m × 3.5 m、顶箱 ≥ 2.4 m、体积 &gt; 50 m³、距离 ≤ 5 m、顶箱仰角 45–55°、听音位在 40–60%</li>
+      <li><a href="https://media.focal-naim.com/focal/file_manager_files/autres-pages/guidelines-dolby-atmos/dolbyatmos-guidelines-installation.pdf" target="_blank" rel="noopener">Focal：Guidelines for Dolby Atmos installation</a>：L/R 30°、环绕 100° ± 10°、顶箱 45° 仰角</li>
+      <li><a href="https://www.soundonsound.com/techniques/setting-atmos-mixing-room" target="_blank" rel="noopener">Sound On Sound：Setting Up An Atmos Mixing Room</a>：小型全景声棚 ≥ 4.5 × 4.5 × 2.6 m、听音距离 ≥ 1.5 m</li>
+      <li><a href="https://tech.ebu.ch/files/live/sites/tech/files/shared/techreview/trev_274-hoeg.pdf" target="_blank" rel="noopener">EBU Technical Review 274</a>：控制室 ≥ 30 m²、听音位离侧墙和后墙 ≥ 1.5 m、房间比例公式</li>
+      <li><a href="https://www.av269.com/2026/0823/4464.shtml" target="_blank" rel="noopener">阿强家庭影院网：5.1.2 到 7.2.4 全攻略</a>：天空声道 65–100°</li>
+      <li><a href="https://manuals.denon.com/avrx2800h/na/en/DRDZSYpvilxnds.php" target="_blank" rel="noopener">Denon AVR-X2800H 说明书</a>：家用 L/R 22–30°、Top Middle 摆位</li>
+    </ul>
+  </section>
+</div>

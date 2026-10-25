@@ -1,0 +1,715 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>5.1.2 音箱布置图</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: drafting sheets — each figure is a sheet with a title strip, drawing left, spec column right */
+:root {
+  --bg: #eceff3;
+  --sheet: #fbfcfd;
+  --ink: #17202a;
+  --muted: #5a6572;
+  --line: #c8d0d9;
+  --grid: #e4e9ef;
+  --desk: #eef1f5;
+  --g-f: #2361c4;   /* 前置 L/R */
+  --g-c: #c0650f;   /* 中置 C */
+  --g-s: #14836a;   /* 环绕 Ls/Rs */
+  --g-t: #7848c2;   /* 天空 Ltm/Rtm */
+  --g-l: #687280;   /* LFE */
+  --g-floor: #5a6572;
+  --sans: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1217; --sheet: #151b22; --ink: #e3e8ee; --muted: #94a0ad; --line: #2e3843;
+    --grid: #1f2831; --desk: #1c242d;
+    --g-f: #6ea1ff; --g-c: #f0a458; --g-s: #4cc69e; --g-t: #b38cf2; --g-l: #a1aab5; --g-floor: #94a0ad;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1217; --sheet: #151b22; --ink: #e3e8ee; --muted: #94a0ad; --line: #2e3843;
+  --grid: #1f2831; --desk: #1c242d;
+  --g-f: #6ea1ff; --g-c: #f0a458; --g-s: #4cc69e; --g-t: #b38cf2; --g-l: #a1aab5; --g-floor: #94a0ad;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--sans);
+  font-size: 15px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+header { display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+h1 { margin: 0; font-size: clamp(30px, 5vw, 46px); font-weight: 900; letter-spacing: -.01em; line-height: 1.15; text-wrap: balance; }
+.lede { margin: 0; max-width: 62ch; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 6px; font-size: 13.5px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 14px; height: 14px; border-radius: 3px; border: 2px solid currentColor; background: color-mix(in srgb, currentColor 18%, transparent); }
+.c-f { color: var(--g-f); } .c-c { color: var(--g-c); } .c-s { color: var(--g-s); } .c-t { color: var(--g-t); } .c-l { color: var(--g-l); }
+.legend b { color: var(--ink); font-weight: 500; }
+.legend .mono { font-family: var(--mono); font-weight: 600; }
+
+.sheet { background: var(--sheet); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.strip { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: stretch; border-bottom: 1px solid var(--line); }
+.strip > div { padding: 12px 18px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.figno { font-family: var(--mono); font-weight: 700; font-size: 20px; border-right: 1px solid var(--line); letter-spacing: .02em; }
+.strip h2 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.35; text-wrap: balance; }
+.strip p { margin: 0; font-size: 13px; color: var(--muted); }
+.scale { font-family: var(--mono); font-size: 12px; color: var(--muted); border-left: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.figrow { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+.draw { padding: 14px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.scroll svg { display: block; width: 100%; height: auto; min-width: 600px; }
+.scroll svg.section { min-width: 420px; max-width: 520px; margin: 4px auto 0; }
+.cap { font-size: 12.5px; color: var(--muted); margin: 0 4px; }
+.specs { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.specs h3 { margin: 0; font-size: 12px; font-family: var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 7px 14px; font-size: 14px; }
+dt { color: var(--muted); }
+dd { margin: 0; min-width: 0; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 500; }
+.note { font-size: 13px; color: var(--muted); margin: 0; border-top: 1px solid var(--line); padding-top: 12px; }
+.ab { font-family: var(--mono); font-weight: 700; }
+
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 760px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .06em; background: var(--desk); white-space: nowrap; }
+td.k { font-family: var(--mono); font-weight: 700; white-space: nowrap; }
+td.k i { font-style: normal; display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: currentColor; margin-right: 8px; vertical-align: 1px; }
+td .num { white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+.tbl-head { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
+.tbl-head h2 { margin: 0; font-size: 18px; }
+.tbl-head p { margin: 0; color: var(--muted); font-size: 13px; }
+
+.fig2grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.fig2side { display: flex; flex-direction: column; border-left: 1px solid var(--line); min-width: 0; }
+.fig2side .draw { border-right: 0; border-bottom: 1px solid var(--line); }
+.points { margin: 0; padding: 16px 20px 20px 38px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.points li::marker { color: var(--muted); }
+
+.sources { font-size: 13px; color: var(--muted); }
+.sources h2 { font-size: 14px; color: var(--ink); margin: 0 0 6px; }
+.sources ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; }
+.sources a { color: var(--g-f); text-underline-offset: 2px; }
+.sources a:focus-visible { outline: 2px solid var(--g-f); outline-offset: 2px; }
+
+/* ---------------- SVG drawing styles ---------------- */
+svg text { font-family: var(--sans); }
+.halo, .lab, .sub, .angtext, .dimtext, .spklab, .zsub, .zlab, .clartext {
+  paint-order: stroke; stroke: var(--sheet); stroke-width: 4px; stroke-linejoin: round;
+}
+.lab { font-size: 13px; font-weight: 700; fill: var(--ink); }
+.sub { font-size: 11.5px; fill: var(--muted); }
+.abbr { font-family: var(--mono); font-weight: 700; font-size: 13.5px; }
+.abbr.g-f { fill: var(--g-f); } .abbr.g-c { fill: var(--g-c); } .abbr.g-s { fill: var(--g-s); }
+.abbr.g-t { fill: var(--g-t); } .abbr.g-l { fill: var(--g-l); }
+.box { stroke-width: 1.6; fill-opacity: .2; }
+.box.g-f { fill: var(--g-f); stroke: var(--g-f); } .box.g-c { fill: var(--g-c); stroke: var(--g-c); }
+.box.g-s { fill: var(--g-s); stroke: var(--g-s); } .box.g-t { fill: var(--g-t); stroke: var(--g-t); }
+.box.g-l { fill: var(--g-l); stroke: var(--g-l); } .box.g-floor { fill: var(--g-floor); stroke: var(--g-floor); }
+.box.top { stroke-dasharray: 4 3; }
+.box.faint { opacity: .55; }
+.face { stroke-width: 4; stroke-linecap: round; }
+.face.g-f { stroke: var(--g-f); } .face.g-c { stroke: var(--g-c); } .face.g-s { stroke: var(--g-s); } .face.g-t { stroke: var(--g-t); }
+.aim { stroke-width: 1.3; stroke-dasharray: 2 4; }
+.aim.g-f { stroke: var(--g-f); } .aim.g-c { stroke: var(--g-c); } .aim.g-s { stroke: var(--g-s); } .aim.g-t { stroke: var(--g-t); }
+.azi { stroke: var(--line); stroke-width: 1; }
+.ring { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 6 5; opacity: .75; }
+.radius { stroke: var(--muted); stroke-width: 1; }
+.anglearc { fill: none; stroke: var(--ink); stroke-width: 1.2; }
+.angtext { font-family: var(--mono); font-size: 12px; font-weight: 600; fill: var(--ink); }
+.grid { stroke: var(--grid); stroke-width: 1; }
+.wall { fill: none; stroke: var(--ink); stroke-width: 5; }
+.wallline { stroke: var(--ink); stroke-width: 5; }
+.walltag { font-size: 11px; fill: var(--muted); letter-spacing: .1em; }
+.dim, .ext { stroke: var(--muted); stroke-width: 1; }
+.tick { stroke: var(--muted); stroke-width: 1.5; }
+.dimtext { font-family: var(--mono); font-size: 11.5px; fill: var(--muted); font-weight: 500; }
+.roomtag { font-size: 13px; font-weight: 700; fill: var(--ink); }
+.roomtag2 { font-size: 12px; fill: var(--muted); }
+.sb1 { fill: var(--ink); } .sb2 { fill: var(--sheet); stroke: var(--ink); stroke-width: 1; }
+.sbtext { font-family: var(--mono); font-size: 10.5px; fill: var(--muted); }
+.head { fill: var(--sheet); stroke: var(--ink); stroke-width: 1.6; }
+.nose { fill: var(--ink); }
+.footprint { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-dasharray: 8 5; }
+.desk { fill: var(--desk); stroke: var(--muted); stroke-width: 1.2; }
+.monitor { fill: var(--ink); }
+.chair { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.earline { stroke: var(--muted); stroke-dasharray: 3 4; stroke-width: 1; }
+.floor { stroke: var(--ink); stroke-width: 3; }
+.ceil { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 10 6; }
+.deskleg, .stand-l { stroke: var(--muted); stroke-width: 2; }
+.stand { fill: var(--muted); }
+.zone { stroke: none; }
+.zone.g-c { fill: var(--g-c); fill-opacity: .22; } .zone.g-f { fill: var(--g-f); fill-opacity: .18; }
+.zone.g-s { fill: var(--g-s); fill-opacity: .18; } .zone.g-t { fill: var(--g-t); fill-opacity: .22; }
+.zone.g-t2 { fill: var(--g-t); fill-opacity: .13; } .zone.g-floor { fill: var(--g-floor); fill-opacity: .12; }
+.bound { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 4 4; opacity: .5; }
+.zlab { font-size: 15px; font-weight: 700; fill: var(--ink); }
+.zlab .abbr { font-size: 17px; }
+.zsub { font-size: 11.5px; fill: var(--muted); }
+.clar { stroke: none; }
+.c1 { fill: var(--ink); fill-opacity: .8; } .c2 { fill: var(--ink); fill-opacity: .35; } .c3 { fill: var(--ink); fill-opacity: .12; }
+.clartext { font-size: 12px; font-weight: 700; fill: var(--ink); }
+.spklab { font-family: var(--mono); font-size: 12px; font-weight: 600; fill: var(--ink); }
+.compass { font-size: 13px; font-weight: 700; fill: var(--muted); letter-spacing: .2em; }
+
+@media (max-width: 920px) {
+  .figrow, .fig2grid { grid-template-columns: minmax(0, 1fr); }
+  .draw { border-right: 0; border-bottom: 1px solid var(--line); }
+  .fig2side { border-left: 0; }
+  .strip { grid-template-columns: auto minmax(0, 1fr); }
+  .scale { display: none; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Dolby Atmos · 5.1.2 · 俯视平面</div>
+    <h1>5.1.2 音箱布置图</h1>
+    <p class="lede">图 1 是两种场景的标准摆位，图 2 是每组音箱负责让你听出哪个方向的声音。角度以正前方为 0°，向左为负、向右为正；所有俯视图上方都是前墙。</p>
+    <div class="legend" aria-label="音箱分组">
+      <span class="c-f"><i class="sw"></i><b>前置组 <span class="mono">L / R</span></b></span>
+      <span class="c-c"><i class="sw"></i><b>中置 <span class="mono">C</span></b></span>
+      <span class="c-s"><i class="sw"></i><b>环绕组 <span class="mono">Ls / Rs</span></b></span>
+      <span class="c-t"><i class="sw"></i><b>天空组 <span class="mono">Ltm / Rtm</span>（虚线框 = 装在头顶）</b></span>
+      <span class="c-l"><i class="sw"></i><b>低频 <span class="mono">LFE</span></b></span>
+    </div>
+  </header>
+
+  <!-- ===================== FIG 1A ===================== -->
+  <section class="sheet" aria-labelledby="t1a">
+    <div class="strip">
+      <div class="figno">1A</div>
+      <div><h2 id="t1a">标准录音棚 · 等距布局</h2><p>按 Dolby 全景声棚指南和 ITU-R BS.775 的角度画；8 只音箱到听音位距离相同</p></div>
+      <div class="scale">网格 0.5 m<br>示意比例 ≈ 1:55</div>
+    </div>
+    <div class="figrow">
+      <div class="draw">
+        <div class="scroll"><svg class="plan" viewBox="0 0 775 730" role="img" aria-label="图1A 录音棚 5.1.2 平面图" xmlns="http://www.w3.org/2000/svg">
+<title>图1A 录音棚 5.1.2 平面图</title>
+<line class="grid" x1="150.0" y1="95.0" x2="150.0" y2="635.0"/>
+<line class="grid" x1="195.0" y1="95.0" x2="195.0" y2="635.0"/>
+<line class="grid" x1="240.0" y1="95.0" x2="240.0" y2="635.0"/>
+<line class="grid" x1="285.0" y1="95.0" x2="285.0" y2="635.0"/>
+<line class="grid" x1="330.0" y1="95.0" x2="330.0" y2="635.0"/>
+<line class="grid" x1="375.0" y1="95.0" x2="375.0" y2="635.0"/>
+<line class="grid" x1="420.0" y1="95.0" x2="420.0" y2="635.0"/>
+<line class="grid" x1="465.0" y1="95.0" x2="465.0" y2="635.0"/>
+<line class="grid" x1="510.0" y1="95.0" x2="510.0" y2="635.0"/>
+<line class="grid" x1="555.0" y1="95.0" x2="555.0" y2="635.0"/>
+<line class="grid" x1="600.0" y1="95.0" x2="600.0" y2="635.0"/>
+<line class="grid" x1="150.0" y1="635.0" x2="600.0" y2="635.0"/>
+<line class="grid" x1="150.0" y1="590.0" x2="600.0" y2="590.0"/>
+<line class="grid" x1="150.0" y1="545.0" x2="600.0" y2="545.0"/>
+<line class="grid" x1="150.0" y1="500.0" x2="600.0" y2="500.0"/>
+<line class="grid" x1="150.0" y1="455.0" x2="600.0" y2="455.0"/>
+<line class="grid" x1="150.0" y1="410.0" x2="600.0" y2="410.0"/>
+<line class="grid" x1="150.0" y1="365.0" x2="600.0" y2="365.0"/>
+<line class="grid" x1="150.0" y1="320.0" x2="600.0" y2="320.0"/>
+<line class="grid" x1="150.0" y1="275.0" x2="600.0" y2="275.0"/>
+<line class="grid" x1="150.0" y1="230.0" x2="600.0" y2="230.0"/>
+<line class="grid" x1="150.0" y1="185.0" x2="600.0" y2="185.0"/>
+<line class="grid" x1="150.0" y1="140.0" x2="600.0" y2="140.0"/>
+<line class="grid" x1="150.0" y1="95.0" x2="600.0" y2="95.0"/>
+<rect class="wall" x="150.0" y="95.0" width="450.0" height="540.0"/>
+<text class="walltag" x="160.8" y="114.8" text-anchor="start">前墙</text>
+<text class="walltag" x="160.8" y="624.2" text-anchor="start">后墙</text>
+<circle class="ring" cx="375.0" cy="340.7" r="180.0"/>
+<line class="azi" x1="375.0" y1="340.7" x2="285.0" y2="184.8"/>
+<line class="azi" x1="375.0" y1="340.7" x2="465.0" y2="184.8"/>
+<line class="azi" x1="375.0" y1="340.7" x2="375.0" y2="160.7"/>
+<line class="azi" x1="375.0" y1="340.7" x2="205.9" y2="402.3"/>
+<line class="azi" x1="375.0" y1="340.7" x2="544.1" y2="402.3"/>
+<path class="anglearc" d="M375.0 270.5 A70.2 70.2 0 0 1 410.1 279.9"/>
+<text class="angtext" x="396.4" y="260.7" text-anchor="middle">30°</text>
+<path class="anglearc" d="M328.5 357.6 A49.5 49.5 0 0 1 375.0 291.2"/>
+<text class="angtext" x="314.7" y="351.3" text-anchor="middle">110°</text>
+<line class="radius" x1="375.0" y1="340.7" x2="285.0" y2="496.6"/>
+<text class="dimtext" x="311.6" y="438.1" text-anchor="end">r = 2.0 m</text>
+<g transform="translate(375.0 160.7) rotate(0.0)"><rect class="box g-c" x="-20.7" y="-10.8" width="41.4" height="21.6" rx="2"/><line class="face g-c" x1="-18.7" y1="10.8" x2="18.7" y2="10.8"/></g>
+<g transform="translate(285.0 184.8) rotate(-30.0)"><rect class="box g-f" x="-13.5" y="-12.6" width="27.0" height="25.2" rx="2"/><line class="face g-f" x1="-11.5" y1="12.6" x2="11.5" y2="12.6"/></g>
+<g transform="translate(465.0 184.8) rotate(30.0)"><rect class="box g-f" x="-13.5" y="-12.6" width="27.0" height="25.2" rx="2"/><line class="face g-f" x1="-11.5" y1="12.6" x2="11.5" y2="12.6"/></g>
+<g transform="translate(205.9 402.3) rotate(-110.0)"><rect class="box g-s" x="-13.5" y="-11.7" width="27.0" height="23.4" rx="2"/><line class="face g-s" x1="-11.5" y1="11.7" x2="11.5" y2="11.7"/></g>
+<g transform="translate(544.1 402.3) rotate(110.0)"><rect class="box g-s" x="-13.5" y="-11.7" width="27.0" height="23.4" rx="2"/><line class="face g-s" x1="-11.5" y1="11.7" x2="11.5" y2="11.7"/></g>
+<g transform="translate(285.0 320.0) rotate(-77.0)"><rect class="box g-t top" x="-12.6" y="-12.6" width="25.2" height="25.2" rx="2"/><line class="face g-t" x1="-10.6" y1="12.6" x2="10.6" y2="12.6"/></g>
+<g transform="translate(465.0 320.0) rotate(77.0)"><rect class="box g-t top" x="-12.6" y="-12.6" width="25.2" height="25.2" rx="2"/><line class="face g-t" x1="-10.6" y1="12.6" x2="10.6" y2="12.6"/></g>
+<rect class="box g-l" x="186.0" y="106.7" width="36.0" height="36.0"/>
+<line class="aim g-f" x1="285.0" y1="184.8" x2="366.0" y2="325.1"/>
+<line class="aim g-f" x1="465.0" y1="184.8" x2="384.0" y2="325.1"/>
+<line class="aim g-c" x1="375.0" y1="160.7" x2="375.0" y2="322.7"/>
+<line class="aim g-s" x1="205.9" y1="402.3" x2="358.1" y2="346.9"/>
+<line class="aim g-s" x1="544.1" y1="402.3" x2="391.9" y2="346.9"/>
+<line class="aim g-t" x1="285.0" y1="320.0" x2="357.5" y2="336.7"/>
+<line class="aim g-t" x1="465.0" y1="320.0" x2="392.5" y2="336.7"/>
+<circle class="head" cx="375.0" cy="340.7" r="10.8"/>
+<path class="nose" d="M370.9 331.4 L375.0 325.0 L379.1 331.4 Z"/>
+<text class="lab" x="263.4" y="183.0" text-anchor="end"><tspan class="abbr g-f">L</tspan> 左前置</text>
+<text class="sub" x="263.4" y="198.0" text-anchor="end">方位 −30°</text>
+<text class="lab" x="486.6" y="183.0" text-anchor="start"><tspan class="abbr g-f">R</tspan> 右前置</text>
+<text class="sub" x="486.6" y="198.0" text-anchor="start">方位 +30°</text>
+<text class="lab" x="375.0" y="133.7" text-anchor="middle"><tspan class="abbr g-c">C</tspan> 中置</text>
+<text class="sub" x="402.0" y="133.7" text-anchor="start">0°</text>
+<text class="lab" x="207.7" y="432.0" text-anchor="middle"><tspan class="abbr g-s">Ls</tspan> 左环绕</text>
+<text class="sub" x="207.7" y="447.0" text-anchor="middle">方位 −110°</text>
+<text class="lab" x="542.3" y="432.0" text-anchor="middle"><tspan class="abbr g-s">Rs</tspan> 右环绕</text>
+<text class="sub" x="542.3" y="447.0" text-anchor="middle">方位 +110°</text>
+<text class="lab" x="285.0" y="282.2" text-anchor="middle"><tspan class="abbr g-t">Ltm</tspan> 左顶中</text>
+<text class="sub" x="285.0" y="297.2" text-anchor="middle">吊顶 · 高 2.5 m</text>
+<text class="lab" x="465.0" y="282.2" text-anchor="middle"><tspan class="abbr g-t">Rtm</tspan> 右顶中</text>
+<text class="sub" x="465.0" y="297.2" text-anchor="middle">吊顶 · 高 2.5 m</text>
+<text class="lab" x="229.2" y="122.9" text-anchor="start"><tspan class="abbr g-l">LFE</tspan> 低音炮</text>
+<text class="sub" x="229.2" y="137.9" text-anchor="start">地面 · 偏离中线</text>
+<text class="sub" x="375.0" y="373.1" text-anchor="middle">听音位 MLP</text>
+<line class="ext" x1="150.0" y1="95.0" x2="150.0" y2="61.2"/>
+<line class="ext" x1="600.0" y1="95.0" x2="600.0" y2="61.2"/>
+<line class="dim" x1="150.0" y1="57.2" x2="600.0" y2="57.2"/>
+<line class="tick" x1="146.0" y1="61.2" x2="154.0" y2="53.2"/>
+<line class="tick" x1="596.0" y1="61.2" x2="604.0" y2="53.2"/>
+<text class="dimtext" x="375.0" y="52.2" text-anchor="middle">5.00 m</text>
+<line class="ext" x1="150.0" y1="95.0" x2="96.5" y2="95.0"/>
+<line class="ext" x1="150.0" y1="635.0" x2="96.5" y2="635.0"/>
+<line class="dim" x1="100.5" y1="95.0" x2="100.5" y2="635.0"/>
+<line class="tick" x1="96.5" y1="99.0" x2="104.5" y2="91.0"/>
+<line class="tick" x1="96.5" y1="639.0" x2="104.5" y2="631.0"/>
+<text class="dimtext" x="94.5" y="365.0" text-anchor="middle" transform="rotate(-90 94.5 365.0)">6.00 m</text>
+<line class="ext" x1="600.0" y1="95.0" x2="644.5" y2="95.0"/>
+<line class="ext" x1="600.0" y1="340.7" x2="644.5" y2="340.7"/>
+<line class="dim" x1="640.5" y1="95.0" x2="640.5" y2="340.7"/>
+<line class="tick" x1="636.5" y1="99.0" x2="644.5" y2="91.0"/>
+<line class="tick" x1="636.5" y1="344.7" x2="644.5" y2="336.7"/>
+<text class="dimtext" x="656.5" y="217.8" text-anchor="middle" transform="rotate(-90 656.5 217.8)">2.73 m</text>
+<line class="ext" x1="600.0" y1="340.7" x2="644.5" y2="340.7"/>
+<line class="ext" x1="600.0" y1="635.0" x2="644.5" y2="635.0"/>
+<line class="dim" x1="640.5" y1="340.7" x2="640.5" y2="635.0"/>
+<line class="tick" x1="636.5" y1="344.7" x2="644.5" y2="336.7"/>
+<line class="tick" x1="636.5" y1="639.0" x2="644.5" y2="631.0"/>
+<text class="dimtext" x="656.5" y="487.9" text-anchor="middle" transform="rotate(-90 656.5 487.9)">3.27 m</text>
+<line class="ext" x1="600.0" y1="340.7" x2="644.1" y2="340.7"/>
+<line class="ext" x1="205.9" y1="415.8" x2="205.9" y2="464.5"/>
+<line class="ext" x1="544.1" y1="415.8" x2="544.1" y2="464.5"/>
+<line class="dim" x1="205.9" y1="468.5" x2="544.1" y2="468.5"/>
+<line class="tick" x1="201.9" y1="472.5" x2="209.9" y2="464.5"/>
+<line class="tick" x1="540.1" y1="472.5" x2="548.1" y2="464.5"/>
+<text class="dimtext" x="375.0" y="463.5" text-anchor="middle">3.76 m（环绕间距）</text>
+<text class="roomtag" x="375.0" y="549.5" text-anchor="middle">房间 6.0 × 5.0 m · 层高 2.8 m · 30 m²</text>
+<text class="roomtag2" x="375.0" y="579.2" text-anchor="middle">参考面积 20–40 m²</text>
+<rect class="sb1" x="150.0" y="672.8" width="45.0" height="5"/>
+<rect class="sb2" x="195.0" y="672.8" width="45.0" height="5"/>
+<rect class="sb1" x="240.0" y="672.8" width="45.0" height="5"/>
+<rect class="sb2" x="285.0" y="672.8" width="45.0" height="5"/>
+<text class="sbtext" x="150.0" y="689.8" text-anchor="middle">0</text>
+<text class="sbtext" x="195.0" y="689.8" text-anchor="middle">0.5</text>
+<text class="sbtext" x="240.0" y="689.8" text-anchor="middle">1</text>
+<text class="sbtext" x="285.0" y="689.8" text-anchor="middle">1.5</text>
+<text class="sbtext" x="330.0" y="689.8" text-anchor="middle">2</text>
+<text class="sbtext" x="338.0" y="678.8" text-anchor="start">m</text>
+</svg></div>
+        <p class="cap">实线框 = 地面层音箱（声学中心在耳高 1.2 m）；粗边 = 发声面；点线 = 指向听音位的朝向。</p>
+        <div class="scroll"><svg class="section" viewBox="0 0 470 249" role="img" aria-label="图1A 剖面：天空声道高度与仰角" xmlns="http://www.w3.org/2000/svg">
+<title>图1A 剖面：天空声道高度与仰角</title>
+<rect class="wall" x="70.0" y="30.0" width="310.0" height="173.6"/>
+<line class="earline" x1="70.0" y1="129.2" x2="380.0" y2="129.2"/>
+<text class="sub" x="225.0" y="151.5" text-anchor="middle">耳高 1.2 m</text>
+<rect class="box g-s faint" x="100.4" y="119.9" width="16.1" height="18.6"/>
+<rect class="box g-f faint" x="154.9" y="119.9" width="16.1" height="18.6"/>
+<rect class="box g-f faint" x="278.9" y="119.9" width="16.1" height="18.6"/>
+<rect class="box g-s faint" x="333.5" y="119.9" width="16.1" height="18.6"/>
+<g transform="translate(163.0 48.6) rotate(37.6)"><rect class="box g-t" x="-8.7" y="-7.4" width="17.4" height="14.9" rx="2"/><line class="face g-t" x1="-6.7" y1="7.4" x2="6.7" y2="7.4"/></g>
+<line class="aim g-t" x1="225.0" y1="129.2" x2="169.2" y2="56.7"/>
+<g transform="translate(287.0 48.6) rotate(-37.6)"><rect class="box g-t" x="-8.7" y="-7.4" width="17.4" height="14.9" rx="2"/><line class="face g-t" x1="-6.7" y1="7.4" x2="6.7" y2="7.4"/></g>
+<line class="aim g-t" x1="225.0" y1="129.2" x2="280.8" y2="56.7"/>
+<circle class="head" cx="225.0" cy="129.2" r="7.4"/>
+<path class="anglearc" d="M259.1 129.2 A34.1 34.1 0 0 0 245.8 102.2"/>
+<text class="angtext" x="265.1" y="117.2" text-anchor="start">52°</text>
+<text class="abbr g-t" x="163.0" y="74.6" text-anchor="middle">Ltm</text>
+<text class="abbr g-t" x="287.0" y="74.6" text-anchor="middle">Rtm</text>
+<line class="ext" x1="380.0" y1="30.0" x2="410.0" y2="30.0"/>
+<line class="ext" x1="380.0" y1="203.6" x2="410.0" y2="203.6"/>
+<line class="dim" x1="406.0" y1="30.0" x2="406.0" y2="203.6"/>
+<line class="tick" x1="402.0" y1="34.0" x2="410.0" y2="26.0"/>
+<line class="tick" x1="402.0" y1="207.6" x2="410.0" y2="199.6"/>
+<text class="dimtext" x="422.0" y="116.8" text-anchor="middle" transform="rotate(-90 422.0 116.8)">层高 2.80</text>
+<line class="ext" x1="153.7" y1="48.6" x2="40.0" y2="48.6"/>
+<line class="ext" x1="153.7" y1="203.6" x2="40.0" y2="203.6"/>
+<line class="dim" x1="44.0" y1="48.6" x2="44.0" y2="203.6"/>
+<line class="tick" x1="40.0" y1="52.6" x2="48.0" y2="44.6"/>
+<line class="tick" x1="40.0" y1="207.6" x2="48.0" y2="199.6"/>
+<text class="dimtext" x="38.0" y="126.1" text-anchor="middle" transform="rotate(-90 38.0 126.1)">顶箱 2.50</text>
+<text class="sub" x="225.0" y="229.6" text-anchor="middle">A–A 剖面（从听音位看向前墙）</text>
+</svg></div>
+      </div>
+      <div class="specs">
+        <h3>房间</h3>
+        <dl>
+          <dt>参考面积</dt><dd><span class="num">20–40 m²</span>，低于 20 m² 很难做到 2 m 等距</dd>
+          <dt>本图房间</dt><dd><span class="num">6.0 × 5.0 m</span>，层高 <span class="num">2.8 m</span>，<span class="num">30 m²</span> / <span class="num">84 m³</span></dd>
+          <dt>Dolby 下限</dt><dd>音箱围出的范围至少 <span class="num">3 m</span> 宽、<span class="num">3.5 m</span> 长；顶箱离地 ≥ <span class="num">2.4 m</span>；体积建议 &gt; <span class="num">50 m³</span></dd>
+          <dt>听音位</dt><dd>离前墙 <span class="num">2.73 m</span>（房长约 45%，Dolby 要求 40–60%）</dd>
+        </dl>
+        <h3>音箱角度与朝向</h3>
+        <dl>
+          <dt>听音距离</dt><dd><span class="num">r = 2.0 m</span>（Dolby：≤ 5 m，建议 &lt; 4 m）</dd>
+          <dt class="c-c"><span class="ab">C</span></dt><dd><span class="num">0°</span>，正对听音位</dd>
+          <dt class="c-f"><span class="ab">L / R</span></dt><dd><span class="num">±30°</span>，向内转 30° 对准头部</dd>
+          <dt class="c-s"><span class="ab">Ls / Rs</span></dt><dd><span class="num">±110°</span>（容许 100–120°），转向听音位</dd>
+          <dt class="c-t"><span class="ab">Ltm / Rtm</span></dt><dd>与 L/R 同宽、在头部前方 <span class="num">0.23 m</span>；高 <span class="num">2.5 m</span>，侧向仰角 <span class="num">52°</span>（Dolby 45–55°），从侧面看 <span class="num">80°</span>（65–100°）；向下斜对准头部</dd>
+          <dt class="c-l"><span class="ab">LFE</span></dt><dd>前方地面、偏离中线；分频约 <span class="num">80 Hz</span></dd>
+        </dl>
+        <p class="note">两只顶箱离听音位 1.66 m，比其他音箱近 0.34 m，在渲染器或功放里补约 1 ms 延时、并调平音量即可。Dolby 认证棚首选 7.1.4，5.1.2 适合入门监听和检查。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FIG 1B ===================== -->
+  <section class="sheet" aria-labelledby="t1b">
+    <div class="strip">
+      <div class="figno">1B</div>
+      <div><h2 id="t1b">桌面近场 · 1 米等距</h2><p>同一套角度缩小到电脑桌：听音距离 1 m，L / R 和头部组成等边三角形</p></div>
+      <div class="scale">网格 0.5 m<br>示意比例 ≈ 1:25</div>
+    </div>
+    <div class="figrow">
+      <div class="draw">
+        <div class="scroll"><svg class="plan" viewBox="0 0 710 570" role="img" aria-label="图1B 桌面近场 5.1.2 平面图" xmlns="http://www.w3.org/2000/svg">
+<title>图1B 桌面近场 5.1.2 平面图</title>
+<line class="grid" x1="150.0" y1="78.0" x2="150.0" y2="478.0"/>
+<line class="grid" x1="250.0" y1="78.0" x2="250.0" y2="478.0"/>
+<line class="grid" x1="350.0" y1="78.0" x2="350.0" y2="478.0"/>
+<line class="grid" x1="450.0" y1="78.0" x2="450.0" y2="478.0"/>
+<line class="grid" x1="550.0" y1="78.0" x2="550.0" y2="478.0"/>
+<line class="grid" x1="110.0" y1="138.0" x2="590.0" y2="138.0"/>
+<line class="grid" x1="110.0" y1="238.0" x2="590.0" y2="238.0"/>
+<line class="grid" x1="110.0" y1="338.0" x2="590.0" y2="338.0"/>
+<line class="grid" x1="110.0" y1="438.0" x2="590.0" y2="438.0"/>
+<rect class="footprint" x="110.0" y="78.0" width="480.0" height="400.0"/>
+<line class="wallline" x1="60.0" y1="78.0" x2="640.0" y2="78.0"/>
+<text class="walltag" x="66.0" y="66.0" text-anchor="start">墙</text>
+<rect class="desk" x="190.0" y="98.0" width="320.0" height="160.0"/>
+<text class="walltag" x="474.0" y="246.0" text-anchor="end">桌面</text>
+<rect class="monitor" x="288.0" y="112.0" width="124.0" height="6.0"/>
+<text class="walltag" x="422.0" y="118.0" text-anchor="start">显示器</text>
+<rect class="chair" x="294.0" y="314.0" width="112.0" height="112.0" rx="18"/>
+<circle class="ring" cx="350.0" cy="338.0" r="200.0"/>
+<line class="azi" x1="350.0" y1="338.0" x2="250.0" y2="164.8"/>
+<line class="azi" x1="350.0" y1="338.0" x2="450.0" y2="164.8"/>
+<line class="azi" x1="350.0" y1="338.0" x2="350.0" y2="138.0"/>
+<line class="azi" x1="350.0" y1="338.0" x2="162.1" y2="406.4"/>
+<line class="azi" x1="350.0" y1="338.0" x2="537.9" y2="406.4"/>
+<path class="anglearc" d="M350.0 214.0 A124.0 124.0 0 0 1 412.0 230.6"/>
+<text class="angtext" x="387.3" y="198.9" text-anchor="middle">30°</text>
+<path class="anglearc" d="M265.4 368.8 A90.0 90.0 0 0 1 350.0 248.0"/>
+<text class="angtext" x="241.7" y="357.1" text-anchor="middle">110°</text>
+<line class="radius" x1="350.0" y1="338.0" x2="250.0" y2="511.2"/>
+<text class="dimtext" x="278.0" y="449.4" text-anchor="end">r = 1.0 m</text>
+<g transform="translate(350.0 138.0) rotate(0.0)"><rect class="box g-c" x="-32.0" y="-15.0" width="64.0" height="30.0" rx="2"/><line class="face g-c" x1="-30.0" y1="15.0" x2="30.0" y2="15.0"/></g>
+<g transform="translate(250.0 164.8) rotate(-30.0)"><rect class="box g-f" x="-17.0" y="-21.0" width="34.0" height="42.0" rx="2"/><line class="face g-f" x1="-15.0" y1="21.0" x2="15.0" y2="21.0"/></g>
+<g transform="translate(450.0 164.8) rotate(30.0)"><rect class="box g-f" x="-17.0" y="-21.0" width="34.0" height="42.0" rx="2"/><line class="face g-f" x1="-15.0" y1="21.0" x2="15.0" y2="21.0"/></g>
+<g transform="translate(162.1 406.4) rotate(-110.0)"><rect class="box g-s" x="-17.0" y="-20.0" width="34.0" height="40.0" rx="2"/><line class="face g-s" x1="-15.0" y1="20.0" x2="15.0" y2="20.0"/></g>
+<g transform="translate(537.9 406.4) rotate(110.0)"><rect class="box g-s" x="-17.0" y="-20.0" width="34.0" height="40.0" rx="2"/><line class="face g-s" x1="-15.0" y1="20.0" x2="15.0" y2="20.0"/></g>
+<g transform="translate(250.0 314.0) rotate(-76.5)"><rect class="box g-t top" x="-16.0" y="-18.0" width="32.0" height="36.0" rx="2"/><line class="face g-t" x1="-14.0" y1="18.0" x2="14.0" y2="18.0"/></g>
+<g transform="translate(450.0 314.0) rotate(76.5)"><rect class="box g-t top" x="-16.0" y="-18.0" width="32.0" height="36.0" rx="2"/><line class="face g-t" x1="-14.0" y1="18.0" x2="14.0" y2="18.0"/></g>
+<rect class="box g-l" x="122.0" y="86.0" width="56.0" height="56.0"/>
+<line class="aim g-f" x1="250.0" y1="164.8" x2="337.0" y2="315.5"/>
+<line class="aim g-f" x1="450.0" y1="164.8" x2="363.0" y2="315.5"/>
+<line class="aim g-c" x1="350.0" y1="138.0" x2="350.0" y2="312.0"/>
+<line class="aim g-s" x1="162.1" y1="406.4" x2="325.6" y2="346.9"/>
+<line class="aim g-s" x1="537.9" y1="406.4" x2="374.4" y2="346.9"/>
+<line class="aim g-t" x1="250.0" y1="314.0" x2="324.7" y2="331.9"/>
+<line class="aim g-t" x1="450.0" y1="314.0" x2="375.3" y2="331.9"/>
+<circle class="head" cx="350.0" cy="338.0" r="18.0"/>
+<path class="nose" d="M343.2 322.5 L350.0 311.9 L356.8 322.5 Z"/>
+<text class="lab" x="222.0" y="200.8" text-anchor="end"><tspan class="abbr g-f">L</tspan> 左前置</text>
+<text class="sub" x="222.0" y="215.8" text-anchor="end">−30° · 桌面</text>
+<text class="lab" x="478.0" y="200.8" text-anchor="start"><tspan class="abbr g-f">R</tspan> 右前置</text>
+<text class="sub" x="478.0" y="215.8" text-anchor="start">+30° · 桌面</text>
+<text class="lab" x="362.0" y="174.0" text-anchor="start"><tspan class="abbr g-c">C</tspan> 中置</text>
+<text class="sub" x="362.0" y="189.0" text-anchor="start">0°</text>
+<text class="lab" x="162.1" y="366.4" text-anchor="middle"><tspan class="abbr g-s">Ls</tspan> 左环绕</text>
+<text class="sub" x="162.1" y="381.4" text-anchor="middle">−110° · 落地架</text>
+<text class="lab" x="537.9" y="366.4" text-anchor="middle"><tspan class="abbr g-s">Rs</tspan> 右环绕</text>
+<text class="sub" x="537.9" y="381.4" text-anchor="middle">+110° · 落地架</text>
+<text class="lab" x="224.0" y="310.0" text-anchor="end"><tspan class="abbr g-t">Ltm</tspan> 左顶中</text>
+<text class="sub" x="224.0" y="325.0" text-anchor="end">吊装 · 高 1.9 m</text>
+<text class="lab" x="476.0" y="310.0" text-anchor="start"><tspan class="abbr g-t">Rtm</tspan> 右顶中</text>
+<text class="sub" x="476.0" y="325.0" text-anchor="start">吊装 · 高 1.9 m</text>
+<text class="lab" x="150.0" y="168.0" text-anchor="middle"><tspan class="abbr g-l">LFE</tspan> 低音炮</text>
+<text class="sub" x="150.0" y="183.0" text-anchor="middle">桌旁地面</text>
+<text class="sub" x="350.0" y="380.0" text-anchor="middle">听音位</text>
+<line class="ext" x1="110.0" y1="78.0" x2="110.0" y2="38.0"/>
+<line class="ext" x1="590.0" y1="78.0" x2="590.0" y2="38.0"/>
+<line class="dim" x1="110.0" y1="34.0" x2="590.0" y2="34.0"/>
+<line class="tick" x1="106.0" y1="38.0" x2="114.0" y2="30.0"/>
+<line class="tick" x1="586.0" y1="38.0" x2="594.0" y2="30.0"/>
+<text class="dimtext" x="350.0" y="29.0" text-anchor="middle">2.40 m（建议占地宽）</text>
+<line class="ext" x1="110.0" y1="78.0" x2="54.0" y2="78.0"/>
+<line class="ext" x1="110.0" y1="478.0" x2="54.0" y2="478.0"/>
+<line class="dim" x1="58.0" y1="78.0" x2="58.0" y2="478.0"/>
+<line class="tick" x1="54.0" y1="82.0" x2="62.0" y2="74.0"/>
+<line class="tick" x1="54.0" y1="482.0" x2="62.0" y2="474.0"/>
+<text class="dimtext" x="52.0" y="278.0" text-anchor="middle" transform="rotate(-90 52.0 278.0)">2.00 m（建议占地深）</text>
+<line class="dim" x1="190.0" y1="278.0" x2="510.0" y2="278.0"/>
+<line class="tick" x1="186.0" y1="282.0" x2="194.0" y2="274.0"/>
+<line class="tick" x1="506.0" y1="282.0" x2="514.0" y2="274.0"/>
+<text class="dimtext" x="350.0" y="273.0" text-anchor="middle">桌宽 1.60 m</text>
+<line class="ext" x1="510.0" y1="98.0" x2="642.0" y2="98.0"/>
+<line class="ext" x1="510.0" y1="258.0" x2="642.0" y2="258.0"/>
+<line class="dim" x1="638.0" y1="98.0" x2="638.0" y2="258.0"/>
+<line class="tick" x1="634.0" y1="102.0" x2="642.0" y2="94.0"/>
+<line class="tick" x1="634.0" y1="262.0" x2="642.0" y2="254.0"/>
+<text class="dimtext" x="654.0" y="178.0" text-anchor="middle" transform="rotate(-90 654.0 178.0)">桌深 0.80</text>
+<line class="ext" x1="510.0" y1="258.0" x2="642.0" y2="258.0"/>
+<line class="ext" x1="510.0" y1="338.0" x2="642.0" y2="338.0"/>
+<line class="dim" x1="638.0" y1="258.0" x2="638.0" y2="338.0"/>
+<line class="tick" x1="634.0" y1="262.0" x2="642.0" y2="254.0"/>
+<line class="tick" x1="634.0" y1="342.0" x2="642.0" y2="334.0"/>
+<text class="dimtext" x="654.0" y="298.0" text-anchor="middle" transform="rotate(-90 654.0 298.0)">0.40</text>
+<line class="ext" x1="374.0" y1="338.0" x2="646.0" y2="338.0"/>
+<text class="roomtag" x="470.0" y="458.0" text-anchor="middle">占地约 2.4 × 2.0 m ≈ 4.8 m²</text>
+<rect class="sb1" x="110.0" y="518.0" width="50.0" height="5"/>
+<rect class="sb2" x="160.0" y="518.0" width="50.0" height="5"/>
+<rect class="sb1" x="210.0" y="518.0" width="50.0" height="5"/>
+<rect class="sb2" x="260.0" y="518.0" width="50.0" height="5"/>
+<text class="sbtext" x="110.0" y="535.0" text-anchor="middle">0</text>
+<text class="sbtext" x="160.0" y="535.0" text-anchor="middle">0.25</text>
+<text class="sbtext" x="210.0" y="535.0" text-anchor="middle">0.5</text>
+<text class="sbtext" x="260.0" y="535.0" text-anchor="middle">0.75</text>
+<text class="sbtext" x="310.0" y="535.0" text-anchor="middle">1</text>
+<text class="sbtext" x="318.0" y="524.0" text-anchor="start">m</text>
+</svg></div>
+        <p class="cap">虚线大框 = 建议预留的占地（含环绕支架和座椅活动）；圆角框 = 座椅。</p>
+        <div class="scroll"><svg class="section" viewBox="0 0 410 316" role="img" aria-label="图1B 剖面：桌面近场高度" xmlns="http://www.w3.org/2000/svg">
+<title>图1B 剖面：桌面近场高度</title>
+<line class="floor" x1="70.0" y1="270.0" x2="310.0" y2="270.0"/>
+<line class="ceil" x1="70.0" y1="30.0" x2="310.0" y2="30.0"/>
+<text class="walltag" x="190.0" y="44.0" text-anchor="middle">最低层高 2.4 m</text>
+<rect class="desk" x="110.0" y="195.0" width="160.0" height="3.0"/>
+<line class="deskleg" x1="116.0" y1="198.0" x2="116.0" y2="270.0"/>
+<line class="deskleg" x1="264.0" y1="198.0" x2="264.0" y2="270.0"/>
+<line class="earline" x1="70.0" y1="150.0" x2="310.0" y2="150.0"/>
+<text class="sub" x="190.0" y="172.0" text-anchor="middle">耳高 1.2 m</text>
+<rect class="box g-f faint" x="131.5" y="143.0" width="17.0" height="32.0"/>
+<rect class="stand" x="134.0" y="175.0" width="12.0" height="20.0"/>
+<rect class="box g-f faint" x="231.5" y="143.0" width="17.0" height="32.0"/>
+<rect class="stand" x="234.0" y="175.0" width="12.0" height="20.0"/>
+<rect class="box g-s faint" x="87.5" y="140.0" width="17.0" height="20.0"/>
+<line class="stand-l" x1="96.0" y1="160.0" x2="96.0" y2="268.0"/>
+<line class="stand-l" x1="82.0" y1="269.0" x2="110.0" y2="269.0"/>
+<rect class="box g-s faint" x="275.5" y="140.0" width="17.0" height="20.0"/>
+<line class="stand-l" x1="284.0" y1="160.0" x2="284.0" y2="268.0"/>
+<line class="stand-l" x1="270.0" y1="269.0" x2="298.0" y2="269.0"/>
+<g transform="translate(140.0 80.0) rotate(35.5)"><rect class="box g-t" x="-8.0" y="-7.5" width="16.0" height="15.0" rx="2"/><line class="face g-t" x1="-6.0" y1="7.5" x2="6.0" y2="7.5"/></g>
+<line class="stand-l" x1="140.0" y1="72.0" x2="140.0" y2="30.0"/>
+<line class="aim g-t" x1="190.0" y1="150.0" x2="147.5" y2="90.5"/>
+<g transform="translate(240.0 80.0) rotate(-35.5)"><rect class="box g-t" x="-8.0" y="-7.5" width="16.0" height="15.0" rx="2"/><line class="face g-t" x1="-6.0" y1="7.5" x2="6.0" y2="7.5"/></g>
+<line class="stand-l" x1="240.0" y1="72.0" x2="240.0" y2="30.0"/>
+<line class="aim g-t" x1="190.0" y1="150.0" x2="232.5" y2="90.5"/>
+<circle class="head" cx="190.0" cy="150.0" r="9.0"/>
+<path class="anglearc" d="M220.0 150.0 A30.0 30.0 0 0 0 207.4 125.6"/>
+<text class="angtext" x="225.0" y="141.0" text-anchor="start">54°</text>
+<text class="abbr g-t" x="124.0" y="78.0" text-anchor="end">Ltm</text>
+<text class="abbr g-t" x="256.0" y="78.0" text-anchor="start">Rtm</text>
+<line class="ext" x1="130.0" y1="80.0" x2="38.0" y2="80.0"/>
+<line class="ext" x1="130.0" y1="270.0" x2="38.0" y2="270.0"/>
+<line class="dim" x1="42.0" y1="80.0" x2="42.0" y2="270.0"/>
+<line class="tick" x1="38.0" y1="84.0" x2="46.0" y2="76.0"/>
+<line class="tick" x1="38.0" y1="274.0" x2="46.0" y2="266.0"/>
+<text class="dimtext" x="36.0" y="175.0" text-anchor="middle" transform="rotate(-90 36.0 175.0)">顶箱 1.90</text>
+<line class="ext" x1="270.0" y1="195.0" x2="344.0" y2="195.0"/>
+<line class="ext" x1="270.0" y1="270.0" x2="344.0" y2="270.0"/>
+<line class="dim" x1="340.0" y1="195.0" x2="340.0" y2="270.0"/>
+<line class="tick" x1="336.0" y1="199.0" x2="344.0" y2="191.0"/>
+<line class="tick" x1="336.0" y1="274.0" x2="344.0" y2="266.0"/>
+<text class="dimtext" x="356.0" y="232.5" text-anchor="middle" transform="rotate(-90 356.0 232.5)">桌高 0.75</text>
+<text class="sub" x="190.0" y="310.0" text-anchor="middle">剖面（从座位看向显示器）</text>
+</svg></div>
+      </div>
+      <div class="specs">
+        <h3>占地</h3>
+        <dl>
+          <dt>桌面</dt><dd><span class="num">1.6 × 0.8 m</span>，桌高 <span class="num">0.75 m</span></dd>
+          <dt>整套占地</dt><dd><span class="num">2.4 × 2.0 m ≈ 4.8 m²</span></dd>
+          <dt>房间建议</dt><dd>至少 <span class="num">3 × 3 m</span>，层高 ≥ <span class="num">2.4 m</span></dd>
+          <dt>头部位置</dt><dd>耳朵离桌沿约 <span class="num">0.4 m</span></dd>
+        </dl>
+        <h3>音箱角度与朝向</h3>
+        <dl>
+          <dt>听音距离</dt><dd><span class="num">r = 1.0 m</span>（0.8–1.2 m 都可，8 只尽量等距）</dd>
+          <dt class="c-c"><span class="ab">C</span></dt><dd><span class="num">0°</span>，放显示器正下方，略向上仰对准耳朵</dd>
+          <dt class="c-f"><span class="ab">L / R</span></dt><dd><span class="num">±30°</span>，两只相距 <span class="num">1.0 m</span>；用脚垫把高音抬到耳高</dd>
+          <dt class="c-s"><span class="ab">Ls / Rs</span></dt><dd><span class="num">±110°</span>，落地支架高 <span class="num">1.2 m</span>，在头部后方 <span class="num">0.34 m</span>、两侧 <span class="num">0.94 m</span></dd>
+          <dt class="c-t"><span class="ab">Ltm / Rtm</span></dt><dd>与 L/R 同宽、头部前方 <span class="num">0.12 m</span>，高 <span class="num">1.9 m</span>，侧向仰角 <span class="num">54°</span>；用墙装吊臂、天花吊装或高支架</dd>
+          <dt class="c-l"><span class="ab">LFE</span></dt><dd>桌旁地面、偏一侧；小音箱可把分频设到 <span class="num">100–120 Hz</span></dd>
+        </dl>
+        <p class="note">桌面距离很近，不建议用"反射式全景声音箱"：它靠天花板反射，近场下音箱直接漏出来的声音比反射声更响，耳朵会把声音定位在音箱本身，头顶感出不来。顶箱直接吊高对准头部最可靠。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NAMES ===================== -->
+  <section class="sheet" aria-labelledby="tnames">
+    <div class="tbl-head"><h2 id="tnames">8 只音箱的标准名称</h2><p>序号是 Dolby 渲染器 5.1.2 输出的声道顺序，接线时按这个顺序对应声卡或功放的输出口</p></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>声道</th><th>缩写</th><th>英文标准名</th><th>中文名</th><th>录音棚（图 1A）</th><th>桌面（图 1B）</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="k c-f"><i></i>L</td><td>Left</td><td>左前置（左主音箱）</td><td><span class="num">−30°</span>，2.0 m，耳高</td><td><span class="num">−30°</span>，1.0 m，桌面</td></tr>
+          <tr><td class="num">2</td><td class="k c-f"><i></i>R</td><td>Right</td><td>右前置（右主音箱）</td><td><span class="num">+30°</span>，2.0 m，耳高</td><td><span class="num">+30°</span>，1.0 m，桌面</td></tr>
+          <tr><td class="num">3</td><td class="k c-c"><i></i>C</td><td>Center</td><td>中置</td><td><span class="num">0°</span>，2.0 m</td><td><span class="num">0°</span>，显示器下方</td></tr>
+          <tr><td class="num">4</td><td class="k c-l"><i></i>LFE</td><td>Low-Frequency Effects</td><td>低频效果（低音炮 Subwoofer）</td><td>前方地面，偏离中线</td><td>桌旁地面</td></tr>
+          <tr><td class="num">5</td><td class="k c-s"><i></i>Ls</td><td>Left Surround</td><td>左环绕</td><td><span class="num">−110°</span>，2.0 m，耳高</td><td><span class="num">−110°</span>，落地架 1.2 m</td></tr>
+          <tr><td class="num">6</td><td class="k c-s"><i></i>Rs</td><td>Right Surround</td><td>右环绕</td><td><span class="num">+110°</span>，2.0 m，耳高</td><td><span class="num">+110°</span>，落地架 1.2 m</td></tr>
+          <tr><td class="num">7</td><td class="k c-t"><i></i>Ltm</td><td>Left Top Middle</td><td>左顶中（左天空声道）</td><td>吊顶 2.5 m，仰角 52°</td><td>吊装 1.9 m，仰角 54°</td></tr>
+          <tr><td class="num">8</td><td class="k c-t"><i></i>Rtm</td><td>Right Top Middle</td><td>右顶中（右天空声道）</td><td>吊顶 2.5 m，仰角 52°</td><td>吊装 1.9 m，仰角 54°</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== FIG 2 ===================== -->
+  <section class="sheet" aria-labelledby="t2">
+    <div class="strip">
+      <div class="figno">2</div>
+      <div><h2 id="t2">每组音箱负责的方向范围</h2><p>色块 = 这个方向来的声音主要由哪组音箱发出；外圈灰带 = 人耳在这个方向能分辨得多清楚</p></div>
+      <div class="scale">不按比例</div>
+    </div>
+    <div class="fig2grid">
+      <div class="draw">
+        <div class="scroll"><svg class="plan" viewBox="0 0 800 760" role="img" aria-label="图2A 水平方向分区" xmlns="http://www.w3.org/2000/svg"><title>图2A 每组音箱负责的水平方向</title>
+<path class="zone g-c" d="M354.4 201.7 A176.3 176.3 0 0 1 445.6 201.7 L409.0 338.3 A34.9 34.9 0 0 0 391.0 338.3 Z"/>
+<path class="zone g-f" d="M445.6 201.7 A176.3 176.3 0 0 1 565.7 311.7 L432.7 360.1 A34.9 34.9 0 0 0 409.0 338.3 Z"/>
+<path class="zone g-f" d="M234.3 311.7 A176.3 176.3 0 0 1 354.4 201.7 L391.0 338.3 A34.9 34.9 0 0 0 367.3 360.1 Z"/>
+<path class="zone g-s" d="M565.7 311.7 A176.3 176.3 0 0 1 400.0 548.3 L400.0 406.9 A34.9 34.9 0 0 0 432.7 360.1 Z"/>
+<path class="zone g-s" d="M400.0 548.3 A176.3 176.3 0 0 1 234.3 311.7 L367.3 360.1 A34.9 34.9 0 0 0 400.0 406.9 Z"/>
+<line class="bound" x1="391.0" y1="338.3" x2="350.7" y2="187.8"/>
+<line class="bound" x1="409.0" y1="338.3" x2="449.3" y2="187.8"/>
+<line class="bound" x1="367.3" y1="360.1" x2="220.8" y2="306.8"/>
+<line class="bound" x1="432.7" y1="360.1" x2="579.2" y2="306.8"/>
+<line class="bound" x1="400.0" y1="406.9" x2="400.0" y2="562.6"/>
+<text class="angtext" x="350.1" y="183.9" text-anchor="middle">−15°</text>
+<text class="angtext" x="449.9" y="183.9" text-anchor="middle">+15°</text>
+<text class="angtext" x="214.9" y="310.1" text-anchor="end">−70°</text>
+<text class="angtext" x="585.1" y="310.1" text-anchor="start">+70°</text>
+<text class="angtext" x="400.0" y="578.7" text-anchor="middle">180°</text>
+<text class="zlab" x="400.0" y="261.4" text-anchor="middle"><tspan class="abbr g-c">C</tspan></text>
+<text class="zsub" x="400.0" y="278.4" text-anchor="middle">正前方</text>
+<text class="zlab" x="321.7" y="284.0" text-anchor="middle"><tspan class="abbr g-f">L</tspan></text>
+<text class="zsub" x="321.7" y="301.0" text-anchor="middle">左前方</text>
+<text class="zlab" x="478.3" y="284.0" text-anchor="middle"><tspan class="abbr g-f">R</tspan></text>
+<text class="zsub" x="478.3" y="301.0" text-anchor="middle">右前方</text>
+<text class="zlab" x="307.6" y="432.7" text-anchor="middle"><tspan class="abbr g-s">Ls</tspan></text>
+<text class="zsub" x="307.6" y="449.7" text-anchor="middle">左侧 → 左后</text>
+<text class="zlab" x="492.4" y="432.7" text-anchor="middle"><tspan class="abbr g-s">Rs</tspan></text>
+<text class="zsub" x="492.4" y="449.7" text-anchor="middle">右侧 → 右后</text>
+<text class="zsub" x="400.0" y="499.0" text-anchor="middle">正后方：Ls + Rs 拼出</text>
+<circle class="ring" cx="400" cy="372" r="205"/>
+<path class="clar c1" d="M275.0 155.4 A250.1 250.1 0 0 1 525.0 155.4 L518.9 166.1 A237.8 237.8 0 0 0 281.1 166.1 Z"/>
+<path class="clar c2" d="M525.0 155.4 A250.1 250.1 0 0 1 635.0 457.5 L623.5 453.3 A237.8 237.8 0 0 0 518.9 166.1 Z"/>
+<path class="clar c2" d="M165.0 457.5 A250.1 250.1 0 0 1 275.0 155.4 L281.1 166.1 A237.8 237.8 0 0 0 176.5 453.3 Z"/>
+<path class="clar c3" d="M635.0 457.5 A250.1 250.1 0 0 1 165.0 457.5 L176.5 453.3 A237.8 237.8 0 0 0 623.5 453.3 Z"/>
+<text class="clartext" x="400.0" y="105.4" text-anchor="middle">清晰 · 相邻音箱只隔 30°</text>
+<text class="clartext" x="650.4" y="276.9" text-anchor="start">较虚</text>
+<text class="zsub" x="650.4" y="292.9" text-anchor="start">间隔 80°</text>
+<text class="clartext" x="149.6" y="276.9" text-anchor="end">较虚</text>
+<text class="zsub" x="149.6" y="292.9" text-anchor="end">间隔 80°</text>
+<text class="clartext" x="400.0" y="650.5" text-anchor="middle">弱 · Ls 与 Rs 之间隔 140°</text>
+<g transform="translate(400.0 167.0) rotate(0.0)"><rect class="box g-c" x="-17.0" y="-10.0" width="34" height="20" rx="2"/><line class="face g-c" x1="-15.0" y1="10.0" x2="15.0" y2="10.0"/></g>
+<g transform="translate(297.5 194.5) rotate(-30.0)"><rect class="box g-f" x="-12.0" y="-10.0" width="24" height="20" rx="2"/><line class="face g-f" x1="-10.0" y1="10.0" x2="10.0" y2="10.0"/></g>
+<g transform="translate(502.5 194.5) rotate(30.0)"><rect class="box g-f" x="-12.0" y="-10.0" width="24" height="20" rx="2"/><line class="face g-f" x1="-10.0" y1="10.0" x2="10.0" y2="10.0"/></g>
+<g transform="translate(207.4 442.1) rotate(-110.0)"><rect class="box g-s" x="-12.0" y="-10.0" width="24" height="20" rx="2"/><line class="face g-s" x1="-10.0" y1="10.0" x2="10.0" y2="10.0"/></g>
+<g transform="translate(592.6 442.1) rotate(110.0)"><rect class="box g-s" x="-12.0" y="-10.0" width="24" height="20" rx="2"/><line class="face g-s" x1="-10.0" y1="10.0" x2="10.0" y2="10.0"/></g>
+<text class="spklab" x="424.0" y="155.0" text-anchor="start">C 0°</text>
+<text class="spklab" x="281.5" y="188.5" text-anchor="end">L −30°</text>
+<text class="spklab" x="518.5" y="188.5" text-anchor="start">R +30°</text>
+<text class="spklab" x="191.4" y="458.1" text-anchor="end">Ls −110°</text>
+<text class="spklab" x="608.6" y="458.1" text-anchor="start">Rs +110°</text>
+<circle class="head" cx="400" cy="372" r="16"/>
+<path class="nose" d="M394 358 L400 348 L406 358 Z"/>
+<text class="zsub" x="400.0" y="406.0" text-anchor="middle">↑ 头顶：Ltm / Rtm（见图 2B）</text>
+<text class="compass" x="400.0" y="26.0" text-anchor="middle">前</text>
+<text class="compass" x="400.0" y="750.0" text-anchor="middle">后</text>
+<text class="compass" x="20.0" y="378.0" text-anchor="start">左</text>
+<text class="compass" x="780.0" y="378.0" text-anchor="end">右</text>
+</svg></div>
+        <p class="cap">图 2A 俯视：耳朵高度一圈的水平方向。分界线取相邻两只音箱的中点，实际是渐变过渡，不是一刀切。</p>
+      </div>
+      <div class="fig2side">
+        <div class="draw">
+          <div class="scroll"><svg class="section" viewBox="0 0 600 318" role="img" aria-label="图2B 上下方向分区" xmlns="http://www.w3.org/2000/svg"><title>图2B 天空声道负责的仰角范围</title>
+<path class="zone g-floor" d="M463.4 250.0 A163.4 163.4 0 0 0 441.5 168.3 L323.0 236.7 A26.6 26.6 0 0 1 326.6 250.0 Z"/>
+<path class="zone g-floor" d="M158.5 168.3 A163.4 163.4 0 0 0 136.6 250.0 L273.4 250.0 A26.6 26.6 0 0 1 277.0 236.7 Z"/>
+<path class="zone g-t" d="M441.5 168.3 A163.4 163.4 0 0 0 300.0 86.6 L300.0 223.4 A26.6 26.6 0 0 1 323.0 236.7 Z"/>
+<path class="zone g-t2" d="M300.0 86.6 A163.4 163.4 0 0 0 158.5 168.3 L277.0 236.7 A26.6 26.6 0 0 1 300.0 223.4 Z"/>
+<line class="bound" x1="323.0" y1="236.7" x2="453.0" y2="161.7"/>
+<line class="bound" x1="300.0" y1="223.4" x2="300.0" y2="73.3"/>
+<line class="bound" x1="277.0" y1="236.7" x2="147.0" y2="161.7"/>
+<line class="earline" x1="80" y1="250" x2="520" y2="250"/>
+<path class="ring" d="M110 250 A190 190 0 0 1 490 250"/>
+<text class="angtext" x="460.3" y="159.8" text-anchor="start">≈30°</text>
+<text class="angtext" x="139.7" y="159.8" text-anchor="end">≈30°</text>
+<text class="angtext" x="300.0" y="65.5" text-anchor="middle">90° 正上方</text>
+<g transform="translate(185.7 98.3) rotate(-37.0)"><rect class="box g-t" x="-12" y="-10" width="24" height="20" rx="2"/><line class="face g-t" x1="-10" y1="10" x2="10" y2="10"/></g>
+<text class="spklab" x="171.7" y="92.3" text-anchor="end">Ltm 左顶中</text>
+<g transform="translate(414.3 98.3) rotate(37.0)"><rect class="box g-t" x="-12" y="-10" width="24" height="20" rx="2"/><line class="face g-t" x1="-10" y1="10" x2="10" y2="10"/></g>
+<text class="spklab" x="428.3" y="92.3" text-anchor="start">Rtm 右顶中</text>
+<rect class="box g-floor" x="98.0" y="240.0" width="24" height="20" rx="2"/>
+<text class="spklab" x="128.0" y="276.0" text-anchor="start">地面层 L / Ls</text>
+<rect class="box g-floor" x="478.0" y="240.0" width="24" height="20" rx="2"/>
+<text class="spklab" x="472.0" y="276.0" text-anchor="end">R / Rs 地面层</text>
+<text class="zsub" x="199.1" y="227.0" text-anchor="middle">地面层</text>
+<text class="zsub" x="400.9" y="227.0" text-anchor="middle">地面层</text>
+<text class="zlab" x="250.6" y="164.4" text-anchor="middle">左上方</text>
+<text class="zsub" x="250.6" y="179.4" text-anchor="middle">Ltm 负责</text>
+<text class="zlab" x="349.4" y="164.4" text-anchor="middle">右上方</text>
+<text class="zsub" x="349.4" y="179.4" text-anchor="middle">Rtm 负责</text>
+<circle class="head" cx="300" cy="250" r="14"/>
+<text class="zsub" x="300.0" y="284.0" text-anchor="middle">从正面看听音者（正视）</text>
+</svg></div>
+          <p class="cap">图 2B 正视：上下方向。仰角约 30° 以上的声音主要交给天空声道。</p>
+        </div>
+        <ol class="points">
+          <li><b>声音在两只音箱之间"拼"出来。</b>某个方向的声音由离它最近的两只音箱按比例发声，越靠近哪只，那只越响。</li>
+          <li><b>正前方最准。</b>C、L、R 三只挤在 60° 内，相邻只隔 30°；人耳本身对正前方也最敏感，约 1° 的偏移就能听出来。</li>
+          <li><b>侧面和身后偏虚。</b>L 到 Ls 隔 80°，Ls 到 Rs 隔 140°，拼出来的声像不稳；7.1 多加两只侧环绕就是为了补这里。</li>
+          <li><b>两只天空声道只分得清左上和右上。</b>前上方和后上方分不太清，要靠 5.1.4 的前后两对顶箱。</li>
+          <li><b>LFE 不负责方向。</b>它只放约 120 Hz 以下的低频，人耳很难判断这么低的声音从哪来，所以低音炮按房间低频是否平坦来摆。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="tablewrap" style="border-top:1px solid var(--line)">
+      <table>
+        <thead><tr><th>组</th><th>摆位</th><th>主要负责的来向</th><th>和谁一起拼</th><th>分辨力</th></tr></thead>
+        <tbody>
+          <tr><td class="k c-c"><i></i>C 中置</td><td><span class="num">0°</span></td><td>正前方 <span class="num">−15° ～ +15°</span>，人声、对白</td><td>与 L / R 拼出 <span class="num">±30°</span> 以内</td><td>最清晰</td></tr>
+          <tr><td class="k c-f"><i></i>L / R 前置</td><td><span class="num">±30°</span></td><td>左前、右前 <span class="num">±15° ～ ±70°</span>，音乐主体和画面左右</td><td>向内与 C 拼，向外与 Ls / Rs 拼</td><td>前方清晰，越往侧面越虚</td></tr>
+          <tr><td class="k c-s"><i></i>Ls / Rs 环绕</td><td><span class="num">±110°</span></td><td>侧面到身后 <span class="num">±70° ～ 180°</span>，环境声、从后方经过的声音</td><td>向前与 L / R 拼，两只一起拼正后方</td><td>侧面较虚，正后方最弱</td></tr>
+          <tr><td class="k c-t"><i></i>Ltm / Rtm 天空</td><td>头顶两侧，仰角 52–55°</td><td>仰角约 <span class="num">30°</span> 以上：左上、右上、正上方（雨声、直升机）</td><td>向下与地面层拼，两只一起拼正上方</td><td>分得清左右，分不清前后</td></tr>
+          <tr><td class="k c-l"><i></i>LFE 低频</td><td>地面，位置灵活</td><td>不分方向，只负责约 <span class="num">120 Hz</span> 以下的低频（爆炸、低音鼓）</td><td>也接收其他音箱分下来的低频</td><td>人耳几乎分不出方向</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sources" aria-labelledby="tsrc">
+    <h2 id="tsrc">数据来源</h2>
+    <ul>
+      <li><a href="https://www.lafontaudio.com/documents/Atmos_authoring_studio.pdf" target="_blank" rel="noopener">Dolby Atmos Home Entertainment Studio Certification Guide</a>：布局最小 3 m × 3.5 m、顶箱 ≥ 2.4 m、体积 &gt; 50 m³、距离 ≤ 5 m、顶箱仰角 45–55°、听音位在 40–60%</li>
+      <li><a href="https://media.focal-naim.com/focal/file_manager_files/autres-pages/guidelines-dolby-atmos/dolbyatmos-guidelines-installation.pdf" target="_blank" rel="noopener">Focal：Guidelines for Dolby Atmos installation</a>：L/R 30°、环绕 100° ± 10°、顶箱 45° 仰角</li>
+      <li><a href="https://www.soundonsound.com/techniques/setting-atmos-mixing-room" target="_blank" rel="noopener">Sound On Sound：Setting Up An Atmos Mixing Room</a>：小型全景声棚 ≥ 4.5 × 4.5 × 2.6 m、听音距离 ≥ 1.5 m</li>
+      <li><a href="https://tech.ebu.ch/files/live/sites/tech/files/shared/techreview/trev_274-hoeg.pdf" target="_blank" rel="noopener">EBU Technical Review 274</a>：控制室 ≥ 30 m²、听音位离侧墙和后墙 ≥ 1.5 m、房间比例公式</li>
+      <li><a href="https://www.av269.com/2026/0823/4464.shtml" target="_blank" rel="noopener">阿强家庭影院网：5.1.2 到 7.2.4 全攻略</a>：天空声道 65–100°</li>
+      <li><a href="https://manuals.denon.com/avrx2800h/na/en/DRDZSYpvilxnds.php" target="_blank" rel="noopener">Denon AVR-X2800H 说明书</a>：家用 L/R 22–30°、Top Middle 摆位</li>
+    </ul>
+  </section>
+</div>
+
+</body></html>
